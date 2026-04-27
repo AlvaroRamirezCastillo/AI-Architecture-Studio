@@ -1,0 +1,89 @@
+{
+  "name": "ai-architecture-studio",
+  "displayName": "AI Architecture Studio",
+  "description": "Asistente de arquitectura con IA para crear, analizar y mejorar diseños de soluciones de software directamente dentro de VS Code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-architecture-studio.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "chatAgents": [
+      {
+        "path": "./src/agents/ai-architecture-studio.agent.md"
+      }
+    ],
+    "languageModelTools": [
+      {
+        "name": "get_reference_architecture_context",
+        "toolReferenceName": "referenceArchitecture",
+        "displayName": "Contexto de arquitecturas de referencia",
+        "modelDescription": "Busca en Azure AI Search documentación interna relacionada con arquitecturas de referencia, estándares de arquitectura, ADRs, lineamientos de ingeniería, patrones de diseño e implementaciones similares. Usa esta herramienta cuando el usuario pida generar, analizar, validar o mejorar una arquitectura de solución y sea necesario obtener contexto basado en documentación interna indexada. También úsala cuando el usuario solicite recomendaciones arquitectónicas, patrones, decisiones de diseño o referencias técnicas de la organización. Devuelve fragmentos relevantes de documentos encontrados en Azure AI Search. No accede a Confluence en tiempo real, no consulta sistemas externos en vivo y solo puede recuperar contenido que ya haya sido indexado.",
+        "userDescription": "Recupera contexto de arquitecturas de referencia desde Azure AI Search.",
+        "canBeReferencedInPrompt": true,
+        "icon": "$(search)",
+        "tags": [
+          "arquitectura",
+          "azure-ai-search",
+          "arquitecturas-referencia"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Consulta en lenguaje natural para buscar estándares, patrones, ADRs, lineamientos o arquitecturas de referencia relevantes."
+            },
+            "top": {
+              "type": "number",
+              "description": "Cantidad máxima de resultados que se deben devolver.",
+              "default": 5
+            }
+          },
+          "required": [
+            "query"
+          ]
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.116.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.2",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@azure/core-auth": "^1.10.1",
+    "@azure/search-documents": "^12.2.0",
+    "openai": "^6.34.0"
+  }
+}
