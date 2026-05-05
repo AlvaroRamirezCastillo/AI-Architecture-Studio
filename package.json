@@ -14,13 +14,35 @@
   "contributes": {
     "commands": [
       {
-        "command": "ai-architecture-studio.helloWorld",
-        "title": "Hello World"
+        "command": "ai-architecture-studio.openStructurizrPreview",
+        "title": "Open Structurizr Preview",
+        "icon": "$(preview)"
       }
     ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "ai-architecture-studio.openStructurizrPreview",
+          "when": "resourceExtname == .dsl",
+          "group": "navigation"
+        }
+      ]
+    },
     "chatAgents": [
       {
-        "path": "./src/agents/ai-architecture-studio.agent.md"
+        "path": "./src/features/architecture-knowledge/agents/architecture-insights.agent.md"
+      },
+      {
+        "path": "./src/features/architecture-generation/agents/orchestrator.agent.md"
+      },
+      {
+        "path": "./src/features/architecture-generation/agents/request-analyzer.agent.md"
+      },
+      {
+        "path": "./src/features/architecture-generation/agents/reference-retriever.agent.md"
+      },
+      {
+        "path": "./src/features/architecture-generation/agents/dsl-generator.agent.md"
       }
     ],
     "languageModelTools": [
@@ -54,6 +76,49 @@
             "query"
           ]
         }
+      },
+      {
+        "name": "open_structurizr_preview",
+        "displayName": "Open Structurizr Preview",
+        "toolReferenceName": "openStructurizrPreview",
+        "canBeReferencedInPrompt": true,
+        "icon": "$(preview)",
+        "userDescription": "Abre la vista previa local de Structurizr para el diagrama DSL actual.",
+        "modelDescription": "Abre la vista previa local de Structurizr dentro de VS Code para un archivo Structurizr DSL. Úsala cuando el usuario pida abrir, mostrar, levantar o refrescar la preview del diagrama. No la uses para editar el archivo DSL ni para validarlo. Si no se proporciona una ruta, usa el editor activo.",
+        "tags": [
+          "structurizr",
+          "dsl",
+          "preview",
+          "diagram"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "filePath": {
+              "type": "string",
+              "description": "Ruta absoluta opcional al archivo .dsl que se quiere previsualizar. Si no se envía, usa el archivo activo."
+            }
+          }
+        },
+        "when": "resourceExtname == .dsl || editorLangId == structurizrDsl"
+      }
+    ],
+    "languages": [
+      {
+        "id": "structurizr-dsl",
+        "extensions": [
+          ".dsl"
+        ],
+        "aliases": [
+          "Structurizr DSL"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "structurizr-dsl",
+        "scopeName": "source.structurizr",
+        "path": "./src/features/architecture-generation/syntaxes/structurizr.tmLanguage.json"
       }
     ]
   },

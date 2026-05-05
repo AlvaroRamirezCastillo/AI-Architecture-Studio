@@ -1,0 +1,113 @@
+{
+  "scopeName": "source.structurizr",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#relationships" },
+    { "include": "#properties" },
+    { "include": "#types" },
+    { "include": "#identifiers" },
+    { "include": "#numbers" },
+    { "include": "#blocks" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.structurizr",
+          "match": "//.*$"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.structurizr",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.structurizr",
+          "match": "\\b(workspace|model|views|configuration)\\b"
+        },
+        {
+          "name": "entity.name.type.structurizr",
+          "match": "\\b(person|softwareSystem|container|component)\\b"
+        },
+        {
+          "name": "support.type.structurizr",
+          "match": "\\b(deploymentNode|infrastructureNode)\\b"
+        },
+        {
+          "name": "entity.name.section.structurizr",
+          "match": "\\b(systemContext|containerView|componentView|deploymentView)\\b"
+        }
+      ]
+    },
+
+    "relationships": {
+      "patterns": [
+        {
+          "name": "keyword.operator.relationship.structurizr",
+          "match": "->"
+        }
+      ]
+    },
+
+    "properties": {
+      "patterns": [
+        {
+          "name": "variable.parameter.structurizr",
+          "match": "\\b(include|exclude|autoLayout|title|description)\\b"
+        }
+      ]
+    },
+
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.structurizr",
+          "match": "\\b(database|queue|topic|cache|api)\\b"
+        }
+      ]
+    },
+
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.other.readwrite.structurizr",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.structurizr",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+
+    "blocks": {
+      "patterns": [
+        {
+          "name": "punctuation.section.block.begin.structurizr",
+          "match": "{"
+        },
+        {
+          "name": "punctuation.section.block.end.structurizr",
+          "match": "}"
+        }
+      ]
+    }
+  }
+}
