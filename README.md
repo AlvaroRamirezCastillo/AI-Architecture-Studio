@@ -17,3 +17,15 @@ cd structurizr
 ```code
 java -jar structurizr-mcp/target/structurizr-mcp-1.0.0.war -dsl -server-read -server-update
 ```
+
+### descargar el server de structurizr
+
+se debe poner en esta ruta
+
+resources/structurizr/structurizr.war
+
+el war lo descargas
+
+```code
+curl -O https://download.structurizr.com/structurizr.war
+```
