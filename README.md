@@ -29,3 +29,7 @@ el war lo descargas
 ```code
 curl -O https://download.structurizr.com/structurizr.war
 ```
+
+### ejecutar la extension
+
+con vscode abre el archivo **src/extension.ts**, luego ve a la opcion run y finalmente darle clic a start debugging.
